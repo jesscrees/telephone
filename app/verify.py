@@ -30,13 +30,24 @@ def get_verification_code():
 def check_verification(request_id, user_code):
     check_verification = client.check_verification(request_id, code=user_code)
 
-    if check_verification['status'] == '0':
-        print('User verification complete!')
+    if response['status'] == '0':
+        print('Verification complete, event_id=' + response['event_id'])
+    else:
+        print('Error:', response['error_text'])
+
+    return response['status']
+
+
+def store_number(number_to_store):
+    with open('./verfied_numbers.txt', 'a') as file:
+        file.write(number_to_store)
 
 
 if __name__ == "__main__":
-    number_to_verify = str(input("What is your telephone number (with 44 on the front, please)? "))
-    request_id = send_verification(number_to_verify)
+    number = str(input("What is your telephone number (with 44 on the front, please)? "))
+    request_id = send_verification(number)
     user_code = get_verification_code()
-    check_verification(request_id, user_code)
+    verification_status = check_verification(request_id, user_code)
+    if verification_status == '0':
+        store_number(number)
 
