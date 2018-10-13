@@ -10,7 +10,7 @@ TEST_PHONE = os.environ['TEST_PHONE']
 
 client = nexmo.Client(application_id=NEXMO_APPLICATION_ID, private_key=NEXMO_PRIVATE_KEY)
 
-number_to_call = 447731709279
+number_to_call = TEST_PHONE
  
 # make a call
 response = client.create_call({
