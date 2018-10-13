@@ -35,8 +35,7 @@ def check_verification(request_id, user_code):
 
 
 if __name__ == "__main__":
-    number_to_verify = str(input("What is your telephone number (with 44 on the
-    front, please)? ")
+    number_to_verify = str(input("What is your telephone number (with 44 on the front, please)? "))
     request_id = send_verification(number_to_verify)
     user_code = get_verification_code()
     check_verification(request_id, user_code)
