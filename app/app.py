@@ -16,13 +16,17 @@ number_to_call = TEST_PHONE
 response = client.create_call({
     'to': [{'type': 'phone', 'number': number_to_call}],
     'from': {'type': 'phone', 'number': number_to_call},
-    'answer_url': ['http://cb9df9b5.ngrok.io']
+    'answer_url': ['http://cb9df9b5.ngrok.io/answer']
 })
 
 print(response)
 
+uuid = response['uuid']
 # stream sybnthesized speech to a call
-# response = client.send_speech(uuid, text='Still working right now at least.')
+# ts_response = client.send_speech(uuid, text="Ain't nothing but a heartache")
+
+# record
+rec_response = client.get_recording(RECORDING_URL)
 
 #Stop sending a synthesized speech message to a call
 # response = client.stop_speech(uuid)
