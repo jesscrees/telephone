@@ -30,12 +30,12 @@ def get_verification_code():
 def check_verification(request_id, user_code):
     check_verification = client.check_verification(request_id, code=user_code)
 
-    if response['status'] == '0':
-        print('Verification complete, event_id=' + response['event_id'])
+    if check_verification['status'] == '0':
+        print('Verification complete, event_id=' + check_verification['event_id'])
     else:
-        print('Error:', response['error_text'])
+        print('Error:', check_verification['error_text'])
 
-    return response['status']
+    return check_verification['status']
 
 
 def store_number(number_to_store):
@@ -44,7 +44,7 @@ def store_number(number_to_store):
 
 
 if __name__ == "__main__":
-    number = str(input("What is your telephone number (with 44 on the front, please)? "))
+    number = str(input("What is your telephone number (with 44 on the front, please?)"))
     request_id = send_verification(number)
     user_code = get_verification_code()
     verification_status = check_verification(request_id, user_code)
