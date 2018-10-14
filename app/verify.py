@@ -39,7 +39,7 @@ def check_verification(request_id, user_code):
 
 
 def store_number(number_to_store):
-    with open('./verfied_numbers.txt', 'a') as file:
+    with open('./verified_numbers.txt', 'a') as file:
         file.write(number_to_store)
 
 
